@@ -1,0 +1,65 @@
+
+
+/*
+SysTick Registers
+SysTick Control and Status at address: 0xE000E010
+STCTRL(0x010)	:	D0->Enable (enables or disables the counter).
+				:	D1->INTEN for interrupt.
+				:	D2->CLK_SRC	Precision internal clock (PIOSC) divided by 4.
+				:	D16->COUNT (When SysTick counts down to zero it turns to '1').
+
+SysTick Reload Value: 0xE000E014
+STRELOAD(0x014)	: used to set the start value of SysTick counter down, (only the lower 24 bits are used).
+				  If you needs 1000 clocks of interval, use value N-1,(999) and its max value 0xFFFFFF.
+				  
+				
+Generating delays using TI timers
+RCGCTIMER (0x604)	:	R0	Timer 0	
+					:	R1	Timer 1
+					:	R2	Timer 2
+					:	R3	Timer 3
+					:	R4	Timer 4
+					:	R5	Timer 5
+
+GPTMTnV (GPTM Timer Value) (GPTMTAV and GPTMTBV)	16bit->work as 2 separate timers.
+													32bit->Work as cascaded one timer.
+													
+GPTM Timer n Match Register (GPTMTnMATCHR)
+Timer value (GPTMTnV) compared with the Match Register (GPTMTnMATCHR), if matches (TAMRIS) flag goes up.
+
+GPTMRIS(0x01C)	:	D4	TAMRIS
+				:	D11	TBMRIS
+
+GPTMCTL(0x00C)	: During initialization of timer bit D0 (TAEN) for timerA or
+										   D8 (TBEN) for timerB register must be disabled.
+
+
+GPTM Configuration Register(0x000)
+	To Configure Timer as 16-bit or 32-bit or RTC counter.
+	if 16-bit, so we will have 2 separate registers TimerA and TimerB.
+	else if 32-bit, the two timers will be cascaded.
+				:	D4	(TACDIR) The direction Count.	1: Down counter | 0: Up counter.
+
+
+GPTMTnILR GPTM Timer n Interval Load.
+	If the timer counts down (TACDIR bit is 0), the timer begin counting from Interval Load value
+	until it reaches zero. Then, the timer counter is loaded with the Interval Load and TnTORIS in GPTMRIS
+	go to high.
+
+
+
+
+
+
+
+
+
+1) enable the clock to Timer0 block.
+2) disable timer while the configuration is being modified.
+3) select 16-bit mode.
+4) select one-shot mode and down -counter mode.
+//Timer0_GPTMTAMR |= (1 << 1);       //Periodic Mode.
+//Timer0_GPTMTAMR |= (3 << 0);       //Capture Mode.
+5) set interval load register value.
+7) enable timer.
+8) wait for timeout flag to set (at RIS bit 0).

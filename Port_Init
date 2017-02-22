@@ -1,0 +1,185 @@
+    /************************************************************************/
+    /*                    Left uSonic Sensor                                */
+    /************************************************************************/
+    //DDRPORT_B |= (1 << 1); DENPORT_B |= (1 << 1);                                 //Left uSonic sensor VCC.
+    //DDRPORT_B |= (1 << 0); DENPORT_B |= (1 << 0);                                   //Left uSonic sensor Tx.
+    //DDRPORT_B &=~(1 << 5); DENPORT_B |= (1 << 5); //PullDOWNPORT_B |= (1 << 5);     //Left uSonic sensor Rx.
+
+    /************************************************************************/
+    /*                    Right uSonic Sensor                               */
+    /************************************************************************/
+/*    DDRPORT_C |= (1 << 5); DENPORT_C |= (1 << 5);                               //Left uSonic sensor VCC.
+    DDRPORT_B |= (1 << 2); DENPORT_B |= (1 << 2);                               //Right uSonic sensor Tx.
+    DDRPORT_C &=~(1 << 4); DENPORT_C |= (1 << 4); PullDOWNPORT_C |= (1 << 4);   //Right uSonic sensor Rx.
+*/
+    /************************************************************************/
+    /*                    Front uSonic Sensor                               */
+    /************************************************************************/
+  /*  DDRPORT_C |= (1 << 6); DENPORT_C |= (1 << 6);                               //Front uSonic sensor VCC.
+    DDRPORT_B |= (1 << 3); DENPORT_B |= (1 << 3);                               //Front uSonic sensor Tx.
+    DDRPORT_D &=~(1 << 0); DENPORT_D |= (1 << 0); PullDOWNPORT_D |= (1 << 0);   //Front uSonic sensor Rx.
+*/
+
+    /************************************************************************/
+    /*                    Back uSonic Sensor                                */
+    /************************************************************************/
+  /*  DDRPORT_A |= (1 << 3); DENPORT_A |= (1 << 3);                               //Back uSonic sensor VCC.
+    DDRPORT_A |= (1 << 2); DENPORT_A |= (1 << 2);                               //Back uSonic sensor Tx.
+    DDRPORT_A &=~(1 << 7); DENPORT_A |= (1 << 7); PullDOWNPORT_A |= (1 << 7);   //Back uSonic sensor Rx.
+*/
+
+    /************************************************************************/
+    /*                    Right PWM Module                                  */
+    /************************************************************************/
+  /*  DDRPORT_B |= (1 << 6); DENPORT_B |= (1 << 6); AltFunSet_B |= (1 << 6); PortControl_B |= 0x04000000; //Right PWM for H-Bridge.
+    DDRPORT_B |= (1 << 7); DENPORT_B |= (1 << 7); AltFunSet_B |= (1 << 7); PortControl_B |= 0x40000000; //Right PWM for H-Bridge.
+    DDRPORT_A |= (1 << 4); DENPORT_A |= (1 << 4);   //Enable right H-Bridge module.
+*/
+
+    /************************************************************************/
+    /*                    Left PWM Module                                   */
+    /************************************************************************/
+  /*  DDRPORT_E |= (1 << 4); DENPORT_E |= (1 << 4); AltFunSet_E |= (1 << 4); PortControl_E |= 0x00040000; //Left PWM for H-Bridge.
+    DDRPORT_E |= (1 << 5); DENPORT_E |= (1 << 5); AltFunSet_E |= (1 << 5); PortControl_E |= 0x00400000; //Left PWM for H-Bridge.
+    DDRPORT_B |= (1 << 4); DENPORT_B |= (1 << 4);   //Enable Left H-Bridge module.
+*/
+
+    /*      Test LEDs      */
+
+
+/*
+    //UAR0T
+
+    DDRPORT_A |= (1 << 0);
+    DDRPORT_A |= (1 << 1);
+
+    DENPORT_A |= (1 << 0);
+    DENPORT_A |= (1 << 1);
+
+    AltFunSet_A |= (1 << 0);
+    AltFunSet_A |= (1 << 1);
+*/
+
+
+
+
+
+
+
+
+/*                                  Service to set a value of the port.
+ *
+ * The Dio_WritePort function shall set the specified value for the specified port.
+ *
+ * When the Dio_WritePort function is called, DIO Channels that are configured as input shall remain unchanged.
+ *
+ * The Dio_WritePort function shall have no effect on channels within this port which are configured as input channels.
+ *
+ */
+
+
+/*                         Writing Data to specific Port.
+ * 1) Enable the clock to PORT, since we cannot do anything with the port registers until the clock is enabled.
+ * 2) Set the Direction register bits as output.
+ * 3) Enable the digital I/O feature of the port.
+ * 4) Write Data to the Port.
+ *
+ */
+
+
+
+
+//void Dio_WritePort ( Dio_PortType PortId, Dio_PortLevelType Level ){
+
+
+//}
+
+
+
+
+
+
+/*                              Service to set a level of a channel.
+ *  If the specified channel is configured as an output channel,
+ *  the Dio_WriteChannel function shall set the specified Level for the specified channel.
+ *
+ *  If the specified channel is configured as an input channel,
+ *  the Dio_WriteChannel function shall have no influence on the physical output.
+ *
+ *  If the specified channel is configured as an input channel,
+ *  the Dio_WriteChannel function shall have no influence on the result of the next Read-Service.
+ *
+ */
+
+/*                         Writing Data to specific Channel.
+ *
+ * 1) Enable the clock to PORT, since we cannot do anything with the port registers until the clock is enabled.
+ * 2) Set the Direction register bit for the specific Channel.
+ * 3) Enable the digital I/O feature of the Channel.
+ * 4) Write Data to the Channel (STD_LOW | STD_HIGH).
+ *
+ */
+
+
+
+//void Dio_WriteChannel( Dio_ChannelType ChannelId, Dio_LevelType Level ){
+
+//}
+
+
+
+/*                                  Returns the level of all channels of that port.
+ *
+ * The Dio_ReadPort function shall return the level of all channels of that port.
+ *
+ * When reading a port which is smaller than the Dio_PortType using the Dio_ReadPort function (see [SWS_Dio_00103]).
+ * the function shall set the bits corresponding to undefined port pins to 0.
+ *
+ */
+
+/*                         Writing Data to specific Port.
+ * 1) Enable the clock to PORT, since we cannot do anything with the port registers until the clock is enabled.
+ * 2) Set the Direction register bits as input.
+ * 3) Enable the digital I/O feature of the port.
+ * 4) enable the pull up resistor option in PUR register since the switch circuit does not have pull-up resistor.
+ * 5) Return the read data on Data register.
+ *
+ */
+
+
+
+//Dio_PortLevelType Dio_ReadPort( Dio_PortType PortId ){
+
+
+//}
+
+
+
+
+
+/*                              Returns the value of the specified DIO channel.
+ *
+ *  The Dio_ReadChannel function shall return the value of the specified DIO channel.
+ *
+ *  Regarding the return value of the Dio_ReadChannel function,
+ *  the requirements [SWS_Dio_00083] and [SWS_Dio_00084] are applicable.
+ *
+ */
+
+/*                         Reading Data to specific Channel.
+ *
+ * 1) Enable the clock to PORT, since we cannot do anything with the port registers until the clock is enabled.
+ * 2) Set the Direction register bit for the specific Channel (Input).
+ * 3) Enable the digital I/O feature of the Channel.
+ * 4) enable the pull up resistor option in PUR register for the specific pin since the switch circuit does not have pull-up resistor.
+ * 5) Read the Data of the Channel (STD_LOW | STD_HIGH).
+ *
+ */
+
+
+
+//Dio_LevelType Dio_ReadChannel( Dio_ChannelType ChannelId ){
+
+//}
+
+
