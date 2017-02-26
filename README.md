@@ -7,5 +7,5 @@ We have used GPIO, Timers and PWM to create an RC Car that can identify a parkin
 The application is provided with Real Time Operating System (FreeRTOS), and has three main modules (Tasks).
 
 Ultrasonic Module: interfacing with four ultrasonic sensors for distance measurements.
-Self-Parking algorithm: to calculate the required moving distance for the parking motion purposes
+Self-Parking algorithm: to calculate the required moving distance for the parking motion purposes.
 Motion Control module: interfacing with two DC motors for motion control.
