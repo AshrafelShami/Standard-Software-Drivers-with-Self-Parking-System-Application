@@ -619,3 +619,4 @@ void System_Init (void){
 	
 	LCD_Init();
 }
+
