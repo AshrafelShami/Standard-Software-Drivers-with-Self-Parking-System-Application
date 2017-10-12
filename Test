@@ -1,0 +1,44 @@
+#define __Port_A_Address		0x40004000	//Start Address of port A.
+#define __Port_B_Address		0x40005000	//Start Address of port B.
+#define __Port_C_Address		0x40006000	//Start Address of port C.
+#define __Port_D_Address		0x40007000	//Start Address of port D.
+#define __Port_E_Address		0x40024000	//Start Address of port E.
+#define __Port_F_Address		0x40025000  //Start Address of port F.
+
+#define __Clock_Enable			0x400FE608	
+#define __Unlock_Register		0x4C4F434B
+
+#define		_DIR_Offset		      0x400		//Offset of Data Direction.
+#define		_DATA_Offset	      0x3FC		//Offset of Data.
+#define		_DEN_Offset		      0x51C		//Offset of Digital Enable.
+#define		_LOCK_Offset	      0x520		//Offset of LOCK.
+#define		_CR_Offset		      0x524		//Offset of Commit.
+#define		_AFSEL_Offset	      0x420		//Offset of Alternate Function Select.
+#define		_GPIOAMSEL_Offset	  0x528	  //Offset of Analog Mode Select.
+#define		_PC_Offset		      0x52C		//Offset of Port Control.
+
+#define   RCGC_GPIO         (*(volatile u32*)(0x400FE108))
+
+/*  GPIO Configuration of of PORT A    */
+#define   DDRPORT_A         (*((volatile u32*)(__Port_A_Address + _DIR_Offset)))
+#define   AltFunSet_A       (*((volatile u32*)(__Port_A_Address + _AFSEL_Offset)))
+#define   DENPORT_A         (*((volatile u32*)(__Port_A_Address + _DEN_Offset)))
+#define   Commit_A          (*((volatile u32*)(__Port_A_Address + _CR_Offset)))
+#define   LOCK_A            (*((volatile u32*)(__Port_A_Address + _LOCK_Offset)))
+#define   PortControl_A     (*((volatile u32*)(__Port_A_Address + _PC_Offset)))
+#define   AnalogMode_A      (*((volatile u32*)(__Port_A_Address + _GPIOAMSEL_Offset)))
+
+
+
+/*  Initialization of PORT A    */
+void PortA_Init( void ){
+    RCGC_GPIO       |= 0x01;                 /*  Active clock for port A.           */
+    u32 delay_for_RCGC = RCGC_GPIO;          /*  Allow time for clock to start.     */
+    LOCK_A          |= __Unlock_Register;    /*  Unlock GPIO A.                     */
+    Commit_A        |= 0x80;                 /*  Allow change in pins.              */
+    AnalogMode_A    |= 0x00;                 /*  Disable the analog mode.           */
+    PortControl_A   |= 0x00000000;           /*  No port control.                   */
+    DDRPORT_A       |= 0x80;                 /*  Direction of Pins.                 */
+    AltFunSet_A     |= 0x00;                 /*  Disable alternative function.      */
+    DENPORT_A       |= 0x80;                 /*  Enable the digital I/O.            */
+}
