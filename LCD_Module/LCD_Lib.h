@@ -1,7 +1,7 @@
 #ifndef LCD_LIB_H_
 #define LCD_LIB_H_
 
-#include "../LCD_Driver/LCD_Lib_Config.h"
+#include "LCD_Lib_Config.h"
 #include "../DataTypes/Data_Types.h"
 
 #define  LCD_CLEAR_CMD					(0x01U)
