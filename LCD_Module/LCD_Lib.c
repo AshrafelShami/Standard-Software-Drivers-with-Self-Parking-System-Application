@@ -1,5 +1,5 @@
 /*      Include Project files       */
-#include "../LCD_Driver/LCD_Lib.h"
+#include "LCD_Lib.h"
 #include "../_NTI_PROJECT/Functions_Prototypes/Delay_Prototypes.h"
 #include "../_NTI_PROJECT/DataTypes/Data_Types.h"
 
