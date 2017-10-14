@@ -47,10 +47,10 @@ Table 1-2: Module 1 (M1) PWM alternate pin assignment
 /*               Configuring PWM generator to create pulses             */
 /************************************************************************/
 /* After the GPIO configuration, we need to take the following steps to configure the PWM:
- * 1. Disable the generator using PWM×CTL register.
- * 2. Configure PWM×GENA (or PWM×GENB).
- * 3. Load the value into PWM×LOAD register to set the desired output frequency.
- * 4. Load the value into PWM×CMPA (or PWMxCMPB) register to set the desired duty cycle.
+ * 1. Disable the generator using PWMÃ—CTL register.
+ * 2. Configure PWMÃ—GENA (or PWMÃ—GENB).
+ * 3. Load the value into PWMÃ—LOAD register to set the desired output frequency.
+ * 4. Load the value into PWMÃ—CMPA (or PWMxCMPB) register to set the desired duty cycle.
  * 5. Start the PWM generator using PWMxCTL.
- * 6. Configure PWM×ENABLE register to direct the PWMx to output pin.
+ * 6. Configure PWMÃ—ENABLE register to direct the PWMx to output pin.
 */
