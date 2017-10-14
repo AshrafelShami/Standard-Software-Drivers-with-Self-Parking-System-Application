@@ -1,6 +1,7 @@
 
 #ifndef FUNCTIONS_PROTOTYPES_TIMER_PROTOTYPES_H_
 #define FUNCTIONS_PROTOTYPES_TIMER_PROTOTYPES_H_
+#include "../DataTypes/Data_Types.h"
 
 void Timer_1_Init     ( void );
 void Start_Timer_1    ( void );
